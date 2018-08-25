@@ -18,6 +18,7 @@ from django.urls import path
 from movies.views import homePage
 urlpatterns = [
     path('',homePage,name="home"),
+     path('home',homePage,name="home"),
     path('admin/', admin.site.urls),
     
 ]
