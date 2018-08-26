@@ -1,0 +1,12 @@
+from django import forms
+from .models import Movies
+class MoviesForm(forms.ModelForm):
+    class Meta:
+        model = Movies
+        fields = [
+            'title',
+            'genreId',
+            'numberInStock',
+            'dailyRentalRate'
+        ]
+
