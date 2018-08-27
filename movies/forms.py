@@ -5,7 +5,7 @@ class MoviesForm(forms.ModelForm):
         model = Movies
         fields = [
             'title',
-            'genreId',
+            'genre',
             'numberInStock',
             'dailyRentalRate'
         ]
