@@ -1,5 +1,11 @@
 {% extends 'base.html' %} {% block content %}
-<p>There are 0 Movies in the Database</p>
+<div>
+        <a class="btn btn-info" href="{% url 'addMovie' %}" >Add Movie</a>
+</div>
+
+<br />
+<p>There are {{ movies|length }} Movies in the Database</p>
+<br />
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
@@ -8,16 +14,24 @@
             <th>Genres</th>
             <th>Stock</th>
             <th>Rating</th>
+            
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
+        {% for movie in movies %}
         <tr>
-            <td>1</td>
-            <td>Die Hard</td>
-            <td>Crime</td>
-            <td>34</td>
-            <td>3.5</td>
+            <td> {{ forloop.counter }} </td>
+            <td>{{ movie.title }}</td>
+            <td>{{ movie.genre }}</td>
+            <td>{{ movie.numberInStock }}</td>
+            <td>{{ movie.dailyRentalRate }}</td>
+       
+            <td><a href="{% url 'editMovie' movie.id %}" class="btn btn-secondary"  >Edit</a></td>
+            <td><a href="{% url 'deleteMovie' movie.id %}" class="btn btn-danger"  >Delete</a></td>
         </tr>
+        {% endfor %}
     </tbody>
 </table>
 {% endblock %}
