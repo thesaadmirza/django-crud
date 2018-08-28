@@ -1,11 +1,15 @@
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse
 from .forms import MoviesForm
 from .models import Movies
 # Create your views here.
 def homePage(request):
+    movies =  Movies.objects.all()
+    paginator = Paginator(movies, 5) 
+    page = request.GET.get('page')
     context = {
-        'movies' : Movies.objects.all()
+        'movies' : paginator.get_page(page)
     }
     return render(request,"home.html",context)
 
