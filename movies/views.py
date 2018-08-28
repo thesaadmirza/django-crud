@@ -21,7 +21,19 @@ def addMovie(request):
     return render(request,"addMovie.html",context)
 
 def editMovie(request,id):
-    return render(request,"addMovie.html",context)
+    movie = Movies.objects.get(id=id)
+    
+    form = MoviesForm(request.POST or None , instance=movie)
+    
+    if form.is_valid():
+        form.save()
+        return redirect('/') 
+    else:
+        context = {
+            'form' : MoviesForm(instance=movie),
+            'id' : id
+        }
+    return render(request,"editMovie.html",context)
 
 def deleteMovie(request,id):
     Movies.objects.filter(id=id).delete()

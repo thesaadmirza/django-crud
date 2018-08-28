@@ -1,0 +1,9 @@
+{% extends 'base.html' %} 
+{% load crispy_forms_tags %}
+{% block content %}
+<h1>Add Movie </h1>
+<form action="{% url 'editMovie' id %}" method="POST">
+    {% csrf_token %} {{ form|crispy }}
+    <input class="btn btn-secondary" type="submit" value="Save" />
+</form>
+{% endblock %}
