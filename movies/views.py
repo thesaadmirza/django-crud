@@ -25,6 +25,8 @@ def addMovie(request):
     return render(request,"addMovie.html",context)
 
 def editMovie(request,id):
+    if request.user.is_authenticated and request.user.is_head:
+      return redirect('addMovie')
     movie = Movies.objects.get(id=id)
     
     form = MoviesForm(request.POST or None , instance=movie)
