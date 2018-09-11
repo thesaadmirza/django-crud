@@ -17,3 +17,15 @@ class MovieCreateAPIView(generics.CreateAPIView):
     authentication_classes     = []
     queryset                   = Movies.objects.all()
     serializer_class           = MovieSerializer
+
+class MovieUpdateAPIView(generics.UpdateAPIView):
+    permission_classes         = []
+    authentication_classes     = []
+    queryset                   = Movies.objects.all()
+    serializer_class           = MovieSerializer
+
+class MovieDeleteAPIView(generics.DestroyAPIView):
+    permission_classes         = []
+    authentication_classes     = []
+    queryset                   = Movies.objects.all()
+    serializer_class           = MovieSerializer
