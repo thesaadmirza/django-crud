@@ -1,4 +1,4 @@
-from rest_framework import generics
+from rest_framework import generics,mixins
 from movies.models import Movies
 from rest_framework import viewsets
 from movies.api.serializers import MovieSerializer
@@ -17,6 +17,16 @@ class MovieCreateAPIView(generics.CreateAPIView):
     authentication_classes     = []
     queryset                   = Movies.objects.all()
     serializer_class           = MovieSerializer
+
+class MovieDetailAPIView(mixins.DestroyModelMixin,mixins.UpdateModelMixin,generics.RetrieveAPIView):
+    permission_classes         = []
+    authentication_classes     = []
+    queryset                   = Movies.objects.all()
+    serializer_class           = MovieSerializer
+    def put(self,request,*args, **kwargs):
+        return self.update(request, *args, **kwargs)
+    def delete(self,request,*args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
 
 class MovieUpdateAPIView(generics.UpdateAPIView):
     permission_classes         = []
